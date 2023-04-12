@@ -13,7 +13,7 @@ import com.example.itemserver.item.request.ItemCreateRequest;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/item")
+@RequestMapping("api/v1/items")
 @AllArgsConstructor
 public class ItemController {
 
