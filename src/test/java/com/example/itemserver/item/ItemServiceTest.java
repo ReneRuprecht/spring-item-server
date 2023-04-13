@@ -43,8 +43,8 @@ class ItemServiceTest {
     void shouldAddSingleItem() {
         ItemCreateRequest itemCreateRequest = new ItemCreateRequest();
         itemCreateRequest.setName("item name");
-        itemCreateRequest.setRegularPrice(new BigDecimal(2.0));
-        itemCreateRequest.setDiscountPrice(new BigDecimal(1.0));
+        itemCreateRequest.setRegularPrice(new BigDecimal("2.0"));
+        itemCreateRequest.setDiscountPrice(new BigDecimal("1.0"));
         itemCreateRequest.setDescription("item desc");
 
         underTest.addItem(itemCreateRequest);
@@ -58,8 +58,8 @@ class ItemServiceTest {
 
     @Test
     void shouldAddMultipleItems() {
-        Item item1 = new Item(1L, "item1", new BigDecimal(2.0), new BigDecimal(1.0), "item1 desc");
-        Item item2 = new Item(2L, "item2", new BigDecimal(2.0), new BigDecimal(1.0), "item2 desc");
+        Item item1 = new Item(1L, "item1", new BigDecimal("2.0"), new BigDecimal("1.0"), "item1 desc");
+        Item item2 = new Item(2L, "item2", new BigDecimal("2.0"), new BigDecimal("1.0"), "item2 desc");
         List<Item> items = List.of(item1, item2);
 
         MultipleItemCreateRequest multipleItemCreateRequest = new MultipleItemCreateRequest(items);
@@ -83,7 +83,7 @@ class ItemServiceTest {
     @Test
     void shouldFindItemById() {
         when(itemRepository.findById(1L))
-            .thenReturn( Optional.of(new Item(1L, "item l", new BigDecimal(2.0), new BigDecimal(1.0), "item 1 desc")));
+            .thenReturn( Optional.of(new Item(1L, "item l", new BigDecimal("2.0"), new BigDecimal("1.0"), "item 1 desc")));
 
         Item testItem = underTest.findItemById(1L);
 
