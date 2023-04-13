@@ -32,4 +32,12 @@ public class Item {
 
     @Column(name = "description", nullable = true)
     private String description;
+
+    @Override
+    public String toString() {
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", regularPrice='" + getRegularPrice()
+                + "'" + ", discountPrice='" + getDiscountPrice() + "'" + ", description='" + getDescription() + "'"
+                + "}";
+    }
+
 }
