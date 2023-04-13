@@ -22,7 +22,7 @@ public class ItemService {
 
     public Item findItemById(Long id) {
         return this.itemRepository.findById(id)
-            .orElseThrow(() -> new ItemNotFoundException(String.format("Item with id: %d does not exist", id)));
+            .orElseThrow(() -> new ItemNotFoundException(id));
 
     }
 

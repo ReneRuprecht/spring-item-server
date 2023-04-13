@@ -40,7 +40,7 @@ public class ItemController {
 
         Item item = this.itemService.addItem(itemCreateRequest);
 
-        return new ResponseEntity<Item>(item, HttpStatus.CREATED);
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
 
     @PostMapping("/multiple")
@@ -49,6 +49,6 @@ public class ItemController {
 
         List<Item> items = this.itemService.addMultipleItems(multipleItemCreateRequest);
 
-        return new ResponseEntity<List<Item>>(items, HttpStatus.CREATED);
+        return new ResponseEntity<>(items, HttpStatus.CREATED);
     }
 }

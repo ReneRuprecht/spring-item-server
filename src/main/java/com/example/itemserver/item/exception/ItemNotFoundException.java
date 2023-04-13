@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class ItemNotFoundException extends RuntimeException {
-    public ItemNotFoundException(String message) {
-        super(message);
+    public ItemNotFoundException(Long id) {
+        super(String.format("Item with id %d does not exist", id));
     }
 }
