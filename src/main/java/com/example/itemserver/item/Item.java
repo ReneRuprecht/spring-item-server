@@ -30,7 +30,7 @@ public class Item {
     @Column(name = "discount_price", nullable = false)
     private BigDecimal discountPrice;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description")
     private String description;
 
     @Override

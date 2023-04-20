@@ -20,17 +20,18 @@ public class ItemService {
 
     public Item findItemById(Long id) {
         return this.itemRepository.findById(id)
-                .orElseThrow(() -> new ItemNotFoundException(id));
+                                  .orElseThrow(() -> new ItemNotFoundException(id));
 
     }
 
     public Item addItem(ItemCreateRequest itemCreateRequest) {
         Item item = Item.builder()
-                .name(itemCreateRequest.getName())
-                .regularPrice(itemCreateRequest.getRegularPrice())
-                .discountPrice(itemCreateRequest.getDiscountPrice())
-                .description(itemCreateRequest.getDescription())
-                .build();
+                        .marketId(itemCreateRequest.marketId())
+                        .name(itemCreateRequest.name())
+                        .regularPrice(itemCreateRequest.regularPrice())
+                        .discountPrice(itemCreateRequest.discountPrice())
+                        .description(itemCreateRequest.description())
+                        .build();
 
         return this.itemRepository.save(item);
     }

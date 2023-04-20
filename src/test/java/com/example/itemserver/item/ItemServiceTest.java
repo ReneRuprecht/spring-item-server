@@ -38,11 +38,13 @@ class ItemServiceTest {
 
     @Test
     void shouldAddSingleItem() {
-        ItemCreateRequest itemCreateRequest = new ItemCreateRequest();
-        itemCreateRequest.setName("item name");
-        itemCreateRequest.setRegularPrice(new BigDecimal("2.0"));
-        itemCreateRequest.setDiscountPrice(new BigDecimal("1.0"));
-        itemCreateRequest.setDescription("item desc");
+        ItemCreateRequest itemCreateRequest = ItemCreateRequest.builder()
+                                                               .marketId(1L)
+                                                               .name("item name")
+                                                               .regularPrice(new BigDecimal("2.0"))
+                                                               .discountPrice(new BigDecimal("1.0"))
+                                                               .description("item desc")
+                                                               .build();
 
         underTest.addItem(itemCreateRequest);
 
@@ -50,7 +52,10 @@ class ItemServiceTest {
 
         Item capturedItem = singleItemCaptor.getValue();
 
-        assertThat(capturedItem.getName()).isEqualTo(itemCreateRequest.getName());
+        assertThat(capturedItem.getMarketId()).isEqualTo(itemCreateRequest.marketId());
+        assertThat(capturedItem.getName()).isEqualTo(itemCreateRequest.name());
+        assertThat(capturedItem.getRegularPrice()).isEqualTo(itemCreateRequest.regularPrice());
+        assertThat(capturedItem.getDiscountPrice()).isEqualTo(itemCreateRequest.discountPrice());
     }
 
     @Test
@@ -79,8 +84,7 @@ class ItemServiceTest {
 
     @Test
     void shouldFindItemById() {
-        when(itemRepository.findById(1L))
-                .thenReturn(Optional.of(new Item(1L, 2L, "item l", new BigDecimal("2.0"), new BigDecimal("1.0"), "item 1 desc")));
+        when(itemRepository.findById(1L)).thenReturn(Optional.of(new Item(1L, 2L, "item l", new BigDecimal("2.0"), new BigDecimal("1.0"), "item 1 desc")));
 
         Item testItem = underTest.findItemById(1L);
 
@@ -91,10 +95,10 @@ class ItemServiceTest {
 
     @Test
     void shouldThrowItemNotFoundExceptionWhenItemDoesNotExist() {
-        when(itemRepository.findById(1L))
-                .thenReturn(Optional.empty());
+        when(itemRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> underTest.findItemById(1L)).isInstanceOf(ItemNotFoundException.class).hasMessageContaining("Item with id 1 does not exist");
+        assertThatThrownBy(() -> underTest.findItemById(1L)).isInstanceOf(ItemNotFoundException.class)
+                                                            .hasMessageContaining("Item with id 1 does not exist");
 
         verify(itemRepository).findById(1L);
     }
