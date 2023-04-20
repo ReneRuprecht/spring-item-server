@@ -35,9 +35,13 @@ public class Item {
 
     @Override
     public String toString() {
-        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", regularPrice='" + getRegularPrice()
-                + "'" + ", discountPrice='" + getDiscountPrice() + "'" + ", description='" + getDescription() + "'"
-                + "}";
+        return "Item{" +
+                "id=" + id +
+                ", marketId=" + marketId +
+                ", name='" + name + '\'' +
+                ", regularPrice=" + regularPrice +
+                ", discountPrice=" + discountPrice +
+                ", description='" + description + '\'' +
+                '}';
     }
-
 }

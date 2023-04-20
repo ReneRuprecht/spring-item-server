@@ -56,6 +56,7 @@ class ItemServiceTest {
         assertThat(capturedItem.getName()).isEqualTo(itemCreateRequest.name());
         assertThat(capturedItem.getRegularPrice()).isEqualTo(itemCreateRequest.regularPrice());
         assertThat(capturedItem.getDiscountPrice()).isEqualTo(itemCreateRequest.discountPrice());
+        assertThat(capturedItem.getDescription()).isEqualTo(itemCreateRequest.description());
     }
 
     @Test
